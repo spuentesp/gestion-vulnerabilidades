@@ -1,0 +1,17 @@
+RESUMEN DE VULNERABILIDADES EXTRAÍDAS
+=======================================
+
+Total de vulnerabilidades encontradas: 195
+
+Vulnerabilidades por repositorio:
+ - asciinema: 0
+ - n8n: 124
+ - SillyTavern: 46
+ - lain: 10
+ - monitor_dm_system: 15
+
+Vulnerabilidades por severidad:
+ - Critical: 4
+ - High: 62
+ - Medium: 86
+ - Low: 43
