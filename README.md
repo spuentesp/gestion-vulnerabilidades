@@ -59,5 +59,10 @@ Toda la evidencia y datos generados se encuentran organizados en el repositorio:
 - `scripts/analisis.py`: Script en Python utilizado para consolidar y contar las vulnerabilidades extraídas de todos los repositorios analizados.
 - `evidence/reportes/resumen_analisis.txt`: Reporte final emitido por el script detallando los conteos de vulnerabilidades por repositorio y por severidad.
 
-## 8. Conclusiones
-La aplicación del ciclo Conozco → Verifico → Evidencio → Decido y Actúo sobre un grupo diverso de 5 repositorios demuestra que los riesgos de cadena de suministro no se limitan al código de la aplicación. Al gestionar vulnerabilidades, el equipo debe observar simultáneamente las librerías base (NPM/Cargo), la seguridad de las canalizaciones de CI/CD, y reducir la fricción humana a través de la automatización para mantener una postura de seguridad sostenible.
+## 8. Conclusiones y Respuesta a la Pregunta Central
+**¿Cómo debería gestionar el equipo las vulnerabilidades encontradas, considerando su origen, su evidencia y el nivel de riesgo que representan?**
+
+El equipo debe gestionar las vulnerabilidades mediante una **estrategia de mitigación en capas basada en el riesgo**:
+1. **Por su nivel de riesgo:** Atender inmediatamente los fallos en dependencias base (como `simple-git` y `next`) aplicando parches críticos (`npm audit fix` / `cargo update`), dado que presentan exposición directa a ataques (ej. RCE) comprobados por la evidencia de Grype.
+2. **Por su origen en CI/CD:** Posteriormente, asegurar la inmutabilidad de los flujos de integración pineando los SHAs de las GitHub Actions (ej. en `n8n` y `asciinema`) para cortar de raíz cualquier posible ataque de cadena de suministro sobre los repositorios.
+3. **Por su prevención (Factor Humano):** Finalmente, para evitar que la suma de vulnerabilidades vuelva a alcanzar cifras críticas (195 hallazgos), el equipo debe instalar de forma obligatoria bots de automatización (Dependabot/Renovate) en todos los repositorios, delegando el monitoreo continuo a las herramientas y retirando la carga de memoria humana.
